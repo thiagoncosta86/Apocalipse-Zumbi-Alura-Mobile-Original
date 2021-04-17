@@ -1356,7 +1356,8 @@ AudioSource:
   m_GameObject: {fileID: 131978718}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8902320516396903881, guid: 9851a1dafad120a498c5bbcd04a0aa10,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -9782,7 +9783,8 @@ AudioSource:
   m_GameObject: {fileID: 595983649}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 8902320516396903881, guid: 9851a1dafad120a498c5bbcd04a0aa10,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -25006,6 +25008,7 @@ GameObject:
   - component: {fileID: 1129745566}
   - component: {fileID: 1129745565}
   - component: {fileID: 1129745564}
+  - component: {fileID: 1129745568}
   m_Layer: 5
   m_Name: BotaoTrocaArma
   m_TagString: BotaoTrocaArma
@@ -25155,6 +25158,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129745562}
   m_CullTransparentMesh: 0
+--- !u!114 &1129745568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129745562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ccf3493c016ecd4cb1b73e5f58746fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1133771804
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27644,6 +27659,7 @@ MonoBehaviour:
   SliderVidaJogador: {fileID: 727151013}
   PainelDeGameOver: {fileID: 1099728981}
   BotaoAnalogico: {fileID: 1508695609}
+  ContadorZumbisMortos: {fileID: 0}
   TextoTempoDeSobrevivencia: {fileID: 1586845855}
   TextoPontuacaoMaxima: {fileID: 1985104275}
   TextoQuantidadeDeZumbisMortos: {fileID: 1164086549}
@@ -27652,6 +27668,7 @@ MonoBehaviour:
   TextoTempoDeSobrevivenciaFinal: {fileID: 973478263}
   TextoPontuacaoFinal: {fileID: 681156823}
   BotaoTrocaArma: {fileID: 1129745565}
+  BotaoDeTiro: {fileID: 0}
   pontuacao: {fileID: 1464600038}
   ranking: {fileID: 826843473}
 --- !u!1001 &1327135882
@@ -39063,6 +39080,7 @@ GameObject:
   - component: {fileID: 2091307868}
   - component: {fileID: 2091307867}
   - component: {fileID: 2091307866}
+  - component: {fileID: 2091307869}
   m_Layer: 5
   m_Name: Atirar
   m_TagString: BotaoTrocaArma
@@ -39181,6 +39199,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091307864}
   m_CullTransparentMesh: 0
+--- !u!114 &2091307869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091307864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ccf3493c016ecd4cb1b73e5f58746fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2096968385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4544171000348092, guid: 3f715056abeb9446fb0b5d697e133844,

@@ -37,10 +37,6 @@ public class ControlaMenu : MonoBehaviour
         BotaoSair.SetActive(true);
         #endif
 
-        //volume=Mathf.Log10(sliderValue) * 20;
-        //(volume/20) = log10 slidervalue
-        //10^(volume / 20)= slidervalue
-        
         SliderVolumeMaster.value = PlayerPrefs.GetFloat("MasterVolume", 80);
         SliderVolumeSfx.value = PlayerPrefs.GetFloat("SfxVolume", 80);
         SliderVolumeMusic.value = PlayerPrefs.GetFloat("MusicVolume", 80);
@@ -57,11 +53,6 @@ public class ControlaMenu : MonoBehaviour
         BotaoSair = GameObject.Find("SairButton");
 
         BotaoVoltar = GameObject.Find("VoltarButton");
-        //VolumeMaster = GameObject.Find("MasterSlider");
-        //VolumeSfx = GameObject.Find("SfxSlider");
-        //VolumeMusic = GameObject.Find("MusicSlider");
-
-        
         
         MenuOpcoes();
         MenuSkin();
@@ -96,12 +87,6 @@ public class ControlaMenu : MonoBehaviour
 
         opcoesIsShowing = !opcoesIsShowing;
 
-        /*
-        BotaoJogar.SetActive(opcoesIsShowing);
-        BotaoSkin.SetActive(opcoesIsShowing);
-        BotaoOpcoes.SetActive(opcoesIsShowing);
-        BotaoSair.SetActive(opcoesIsShowing);
-        */
         ToggleMainMenu(opcoesIsShowing);
     }
 
@@ -132,12 +117,6 @@ public class ControlaMenu : MonoBehaviour
 
         skinIsShowing = !skinIsShowing;
 
-        /*
-        BotaoJogar.SetActive(skinIsShowing);
-        BotaoSkin.SetActive(skinIsShowing);
-        BotaoOpcoes.SetActive(skinIsShowing);
-        BotaoSair.SetActive(skinIsShowing);
-        */
         ToggleMainMenu(skinIsShowing);
     }
 

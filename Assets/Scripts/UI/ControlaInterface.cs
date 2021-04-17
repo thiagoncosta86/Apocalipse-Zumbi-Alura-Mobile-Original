@@ -9,9 +9,11 @@ public class ControlaInterface : MonoBehaviour{
 
     private ControlaJogador scriptControlaJogador;
     private ControlaArma scriptControlaArma;
+    private VerificaSeEDispositivoMovel scriptVerificaSeEDispositivoMovel;
     public Slider SliderVidaJogador;
     public GameObject PainelDeGameOver;
     public GameObject BotaoAnalogico;
+    public GameObject ContadorZumbisMortos;
     public Text TextoTempoDeSobrevivencia;
     public Text TextoPontuacaoMaxima;
     private float tempoPontuacaoSalvo;
@@ -21,8 +23,8 @@ public class ControlaInterface : MonoBehaviour{
     public Text TextoQuantidadeDeZumbisMortosFinal;
     public Text TextoTempoDeSobrevivenciaFinal;
     public Text TextoPontuacaoFinal;
-    public Button BotaoTrocaArma;
-    public Button BotaoDeTiro;
+    public Button BotaoTrocaArma; //somente eh exibido em dispositivo movel
+    public Button BotaoDeTiro; //somente eh exibido em dispositivo movel
 
     //private int tempoPartida;
 
@@ -36,16 +38,13 @@ public class ControlaInterface : MonoBehaviour{
 
     // Use this for initialization
     void Start () {
-        //scriptControlaJogador = GameObject.FindWithTag("Jogador").GetComponent<ControlaJogador>();
-
         scriptControlaArma = GameObject.FindWithTag("Jogador")
                                 .GetComponent<ControlaArma>();
 
         BotaoAnalogico = GameObject.FindGameObjectWithTag("BotaoAnalogico");
-        //BotaoTrocaArma = GameObject.FindGameObjectWithTag("BotaoTrocaArma");
 
-        //SliderVidaJogador.maxValue = scriptControlaJogador.statusJogador.Vida;
-        //AtualizarSliderVidaJogador();
+        scriptVerificaSeEDispositivoMovel = GetComponent<VerificaSeEDispositivoMovel>();
+
         Time.timeScale = 1;
         tempoPontuacaoSalvo = PlayerPrefs.GetFloat("PontuacaoMaxima");
     }
@@ -76,13 +75,18 @@ public class ControlaInterface : MonoBehaviour{
         PainelDeGameOver.SetActive(true);
         Time.timeScale = 0;
         BotaoAnalogico.SetActive(false);
-        BotaoTrocaArma.gameObject.SetActive(false);
-        BotaoDeTiro.gameObject.SetActive(false);
+        if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+
+            BotaoTrocaArma.gameObject.SetActive(false);
+            BotaoDeTiro.gameObject.SetActive(false);
+        }
         TextoChefeAparece.gameObject.SetActive(false); //para nao atrapalhar ranking
 
 
         SliderVidaJogador.gameObject.SetActive(false);
-        TextoQuantidadeDeZumbisMortos.gameObject.SetActive(false);
+        ContadorZumbisMortos.gameObject.SetActive(false);
+        //TextoQuantidadeDeZumbisMortos.gameObject.SetActive(false);
         scriptControlaArma.JogoParado();
 
         int minutos = (int)(Time.timeSinceLevelLoad / 60);
@@ -103,13 +107,62 @@ public class ControlaInterface : MonoBehaviour{
 
     void AtualizarPlacarPontuacaoFinal()
     {
-        TextoPontuacaoFinal.text = pontuacao.GetPontosString();
+        TextoPontuacaoFinal.text = FormataPontuacaoParaString(pontuacao.GetPontos());
     }
-    
+
+    //garante que a pontuaçao tenha no maximo 5 digitos 
+    public static string FormataPontuacaoParaString(int pontos)
+    {
+        if (pontos > 99999)
+        {
+            pontos = 99999;
+        }
+
+        string pontosTexto = pontos.ToString();
+        int quantidadeZeros = 4 - pontosTexto.Length; //sempre vai ter pelo menos um digito, entao subtrair de 4
+        string zerosAntes = "0";
+
+        while (quantidadeZeros > 0)
+        {
+            zerosAntes += "0";
+            quantidadeZeros -= 1;
+        }
+        pontosTexto = zerosAntes + pontosTexto;
+        return pontosTexto;
+    }
+
     void AtualizarPlacarTempo()
     {
-        TextoTempoDeSobrevivenciaFinal.text = pontuacao.GetTempoSobrevivenciaString();
+        TextoTempoDeSobrevivenciaFinal.text = FormatarTempo(pontuacao.GetTempoSobrevivencia());
     }
+
+    //quebra o valor de tempo e coloca no formato 99:59
+    public static string FormatarTempo(int tempo)
+    {
+        int min, seg;
+        min = tempo / 60;
+        seg = tempo % 60;
+
+        string minuto, segundo;
+        minuto = FormataTextoTempo(min);
+        segundo = FormataTextoTempo(seg);
+        return minuto + ":" + segundo;
+    }
+
+    //garante que sempre tem doi digitos em cada parte do relogio na interface
+    private static string FormataTextoTempo(int tempo)
+    {
+        string tempoTexto = "";
+        if (tempo < 10)
+        {
+            tempoTexto += "0";
+        }
+
+        tempoTexto += tempo.ToString();
+
+        return tempoTexto;
+    }
+
 
     public void AlterarNome(string nome)
     {
@@ -119,7 +172,7 @@ public class ControlaInterface : MonoBehaviour{
     public void Reiniciar ()
     {
         LimparPrefsDeRanking();
-        //pontuacao.LimpparPontuacao();
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         
     }
@@ -129,7 +182,6 @@ public class ControlaInterface : MonoBehaviour{
         LimparPrefsDeRanking();
         int sceneIndex = 0; //main menu
         
-        //SceneManager.LoadScene("fase2");
         SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 

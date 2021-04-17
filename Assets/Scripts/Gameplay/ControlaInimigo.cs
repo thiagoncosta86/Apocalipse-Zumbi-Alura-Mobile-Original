@@ -43,7 +43,6 @@ public class ControlaInimigo : MonoBehaviour, IMatavel, IReservavel
         
         AleatorizarZumbi();
         statusInimigo = GetComponent<Status>();
-        //scriptControlaInterface = GameObject.FindObjectOfType(typeof(ControlaInterface)) as ControlaInterface;
     }
 
     void FixedUpdate()
@@ -138,7 +137,6 @@ public class ControlaInimigo : MonoBehaviour, IMatavel, IReservavel
         this.enabled = false;
         ControlaAudio.instancia.PlayOneShot(SomDeMorte);
         VerificarGeracaoKitMedico(porcentagemGerarKitMedico);
-        //scriptControlaInterface.AtualizarQuantidadeDeZumbisMortos();
         pontuavel.Pontuar();
     }
 

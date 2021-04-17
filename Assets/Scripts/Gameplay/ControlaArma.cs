@@ -27,7 +27,6 @@ public class ControlaArma : MonoBehaviour
 
     private void Start()
     {
-        //indiceArmaAtiva = (PlayerPrefs.HasKey("ArmaAtiva")) ? PlayerPrefs.GetInt("ArmaAtiva") : 0;
         indiceArmaAtiva = PlayerPrefs.GetInt("ArmaAtiva", 0);
 
         EquipaArmaAtivaStart();
@@ -63,12 +62,7 @@ public class ControlaArma : MonoBehaviour
             }
         }
     }
-
-    private void Awake()
-    {
-        
-    }
-
+    
     public void TrocaDeArma()
     {
         for (int i = 0; i < Armas.Length; i++)

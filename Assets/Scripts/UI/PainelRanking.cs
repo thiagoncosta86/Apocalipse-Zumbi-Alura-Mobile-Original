@@ -23,17 +23,8 @@ public class PainelRanking : MonoBehaviour
             var colocado = GameObject.Instantiate(this.prefabColocado, this.transform);
             var colocacao = i + 1;
 
-            //colocado.GetComponent<ItemRanking>().Configurar(colocacao, listaPontuacao[i].GetNome(), listaPontuacao[i].GetZumbisMortos().ToString(), listaPontuacao[i].GetTempoSobrevivenciaString(), listaPontuacao[i].GetPontosString());
-
-            //colocado.GetComponent<ItemRanking>().Configurar(colocacao, listaDeColocados[i].nomeJogador, listaDeColocados[i].zumbisMortosString, listaDeColocados[i].tempoSobrevivenciaString, listaDeColocados[i].pontos.ToString());
             colocado.GetComponent<ItemRanking>().Configurar(colocacao, listaDeColocados[i].nomeJogador, listaDeColocados[i].zumbisMortosString, listaDeColocados[i].tempoSobrevivenciaString, listaDeColocados[i].pontosString);
             
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

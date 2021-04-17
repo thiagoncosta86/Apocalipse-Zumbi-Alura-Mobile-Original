@@ -23,32 +23,10 @@ public class BotaoTrocaArma : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //indiceArmaAtiva = (PlayerPrefs.HasKey("ArmaAtiva")) ? PlayerPrefs.GetInt("ArmaAtiva") : 0;
         indiceArmaAtiva = PlayerPrefs.GetInt("ArmaAtiva", 0);
         IniciaArmaAtiva();
     }
-
-    private void Awake()
-    {
-        
-    }
     
-    /*
-    private void VerificaSeDispositivoMovel()
-    {
-        if (SystemInfo.deviceType != DeviceType.Handheld)
-        {
-            this.gameObject.SetActive(false);
-        }
-    }
-    */
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void TrocaDeArma()
     {
         MudaImagemAtiva();
@@ -63,7 +41,7 @@ public class BotaoTrocaArma : MonoBehaviour
             if (!imagemArmas[i].gameObject.activeInHierarchy)
             {
                 imagemArmas[i].gameObject.SetActive(true);
-                //indiceArmaAtiva = i;
+                
                 indiceArmaAtiva = scriptControlaArma.GetIndiceArmaAtiva();
             }
             else
